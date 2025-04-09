@@ -8,7 +8,7 @@ def load_data():
     iris = datasets.load_iris()
     X = iris.data[:, :2]  # On prend 2 features
     y = iris.target
-    return train_test_split(X, y, test_size=0.3, random_state=42)
+    return train_test_split(X, y, test_size=0.3, random_state=80)
 
 def train_svm(X_train, y_train, kernel="linear", C=1.0):
     model = svm.SVC(kernel=kernel, C=C)

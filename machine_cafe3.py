@@ -78,15 +78,18 @@ class AgentPrincipal:
                     montant = float(input("Insérez votre argent (€) : "))
                     self.agent_paiement.inserer_argent(montant)
                 except ValueError:
-                    print("Montant invalide.")
+                    print("Montant invalide. Rentre de la vrai argent")
                     continue
 
                 if self.agent_paiement.verifier_paiement(prix):
                     print("Paiement accepté.")
+                    if self.agent_paiement.solde > prix:
+                        rendu = self.agent_paiement.solde - prix
+                        print(f"La machine va rendre {rendu:.2f}€. Ne mets pas trop d'argent ou la prochaine fois on garde. Merci !")
                     break
                 else:
                     reste = prix - self.agent_paiement.solde
-                    print(f"Il manque encore {reste:.2f}€. Veuillez insérer davantage.")
+                    print(f"Il manque encore {reste:.2f}€. Veuillez insérer davantage sinon tu n'auras pas de boisson !!")
 
             self.agent_boisson.retirer_boisson(choix)
             self.agent_preparation.preparer_boisson(choix)
@@ -95,7 +98,7 @@ class AgentPrincipal:
 
             again = input("\n Une autre boisson ? (o/n) : ").lower()
             if again != 'o':
-                print("Merci d'avoir utilisé la machine de thomas et à bientôt !")
+                print("Merci d'avoir utilisé la machine de Thomas et à bientôt !")
                 break
 
 
